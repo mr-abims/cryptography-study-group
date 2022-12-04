@@ -14,6 +14,7 @@ sha3 = "0.10"
 [dev-dependencies]
 # Benchmarking
 criterion = "0.4.0"
+openssl = { version = "0.10", features = ["vendored"] }
 
 [[bench]]
 name = "week3"

@@ -100,3 +100,14 @@ fn test_get_preimage() {
     // should take around 2^15 = 32768 (half of the outputs) to find one on average.
     println!("Average number of iterations: {}", average_num_iterations);
 }
+
+#[test]
+fn test_compute_mac() {
+    use openssl::symm::{encrypt, Cipher};
+    let message = b"\x4D\x41\x43\x73\x20\x61\x72\x65\x20\x76\x65\x72\x79\x20\x75\x73\x65\x66\x75\x6C\x20\x69\x6E\x20\x63\x72\x79\x70\x74\x6F\x67\x72\x61\x70\x68\x79\x21\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20";
+    let key = b"\x80\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01";
+    let res = encrypt(Cipher::aes_256_cbc(), key, None, message).unwrap();
+    println!("Total length: {}", res.len());
+    // Only take the last block.
+    println!("Result: {:?}", &res[res.len() - 16..]);
+}
