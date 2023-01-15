@@ -1,4 +1,4 @@
-# Questions from Week 3
+# Questions from Week 4
 Link to questions: https://uncloak.org/courses/rust+cryptography+engineering/course-2022-12-09+Session+4+Notes
 
 
